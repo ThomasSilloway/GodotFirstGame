@@ -1,0 +1,130 @@
+[gd_scene load_steps=18 format=3 uid="uid://piq1qo6dhgdh"]
+
+[ext_resource type="PackedScene" uid="uid://brpt71jl5cg2q" path="res://scenes/player.tscn" id="1_5uepx"]
+[ext_resource type="Script" path="res://scripts/ButtonInteractible.gd" id="2_vcans"]
+[ext_resource type="Texture2D" uid="uid://ya235vbyvsuk" path="res://content/textures/fakepngcat.png" id="3_nns85"]
+[ext_resource type="Texture2D" uid="uid://besg2qjuxi16a" path="res://content/textures/prototype/dark/texture_07.png" id="4_3wifo"]
+[ext_resource type="Texture2D" uid="uid://cu5p3glebnkx4" path="res://content/textures/prototype/dark/texture_01.png" id="4_se3bg"]
+[ext_resource type="Texture2D" uid="uid://oaiirmv8ot5o" path="res://content/textures/prototype/dark/texture_03.png" id="5_eg6vh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2q4g"]
+sky_top_color = Color(0.371817, 5.62528e-07, 9.62615e-08, 1)
+sky_horizon_color = Color(0.697213, 0.5, 0.52749, 1)
+sky_energy_multiplier = 0.85
+ground_bottom_color = Color(0.417035, 0, 0.109961, 1)
+ground_horizon_color = Color(0.697213, 0.5, 0.52749, 1)
+
+[sub_resource type="Sky" id="Sky_6brtm"]
+sky_material = SubResource("ProceduralSkyMaterial_e2q4g")
+
+[sub_resource type="Environment" id="Environment_qbkgc"]
+sky = SubResource("Sky_6brtm")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjcof"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_52idf"]
+size = Vector3(0.272949, 0.172974, 0.234375)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6gkoj"]
+albedo_texture = ExtResource("3_nns85")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vcox7"]
+material = SubResource("StandardMaterial3D_6gkoj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hj7w3"]
+albedo_texture = ExtResource("4_3wifo")
+uv1_scale = Vector3(4, 4, 4)
+point_size = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_an42u"]
+albedo_texture = ExtResource("5_eg6vh")
+uv1_scale = Vector3(4, 8, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tk7i8"]
+albedo_texture = ExtResource("5_eg6vh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdacd"]
+albedo_texture = ExtResource("4_se3bg")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_5uepx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48323, 0)
+
+[node name="Level" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.485046, 0.712285, 0.156724)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
+environment = SubResource("Environment_qbkgc")
+
+[node name="Button" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31979, 0.773056, -2.74449)
+use_collision = true
+size = Vector3(0.201775, 0.0473022, 0.202767)
+material = SubResource("StandardMaterial3D_yjcof")
+
+[node name="Interactible3D" type="Area3D" parent="Level/Button"]
+script = ExtResource("2_vcans")
+InteractText = "Press [E] to summon cool ass cat"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Button/Interactible3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0178223, 0.0786743, 0.0214844)
+shape = SubResource("BoxShape3D_52idf")
+
+[node name="CatPicture" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.156692, 1.68591, -3.04688)
+visible = false
+mesh = SubResource("PlaneMesh_vcox7")
+
+[node name="Geometry" type="Node" parent="Level"]
+
+[node name="Floor" type="CSGBox3D" parent="Level/Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.336319, 0.712285, 2.81127)
+material_override = SubResource("StandardMaterial3D_hj7w3")
+use_collision = true
+size = Vector3(12, 1, 12)
+
+[node name="Stage" type="CSGBox3D" parent="Level/Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.336122, 1.33367, -2.61688)
+material_override = SubResource("StandardMaterial3D_an42u")
+use_collision = true
+size = Vector3(3.93793, 0.24115, 0.873812)
+
+[node name="Wall1" type="CSGBox3D" parent="Level/Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06555, 3.36406, 2.81315)
+material_override = SubResource("StandardMaterial3D_tk7i8")
+use_collision = true
+size = Vector3(0.779932, 6.26953, 11.999)
+
+[node name="Wall2" type="CSGBox3D" parent="Level/Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.41823, 3.29238, 2.81098)
+material_override = SubResource("StandardMaterial3D_kdacd")
+use_collision = true
+size = Vector3(0.779932, 6.26953, 11.999)
+
+[node name="Wall3" type="CSGBox3D" parent="Level/Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.410039, 3.34323, -3.66569)
+material_override = SubResource("StandardMaterial3D_kdacd")
+use_collision = true
+size = Vector3(6.93849, 6.26953, 1.21483)
+
+[node name="Wall4" type="CSGBox3D" parent="Level/Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.337014, 3.25723, 8.66814)
+material_override = SubResource("StandardMaterial3D_kdacd")
+use_collision = true
+size = Vector3(6.93849, 6.26953, 1.21483)
+
+[node name="Lights" type="Node" parent="Level"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level/Lights"]
+transform = Transform3D(0.940881, -0.1785, 0.287891, 0, 0.849893, 0.526956, -0.338738, -0.495803, 0.799648, 2.09745, 6.887, 3.41707)
+light_color = Color(0.00679883, 0.339624, 0.41633, 1)
+light_energy = 3.101
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Level/Lights"]
+transform = Transform3D(0.895712, -0.281623, -0.344077, 0, -0.77384, 0.633381, -0.444635, -0.567327, -0.693138, -0.485046, 6.49368, -1.50761)
+light_color = Color(0.603101, 0.712171, 0.994802, 1)
+light_energy = 1.97

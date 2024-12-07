@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6wmqp0buuk5m"]
+[gd_scene load_steps=7 format=3 uid="uid://c6wmqp0buuk5m"]
 
 [ext_resource type="Texture2D" uid="uid://bulteu43r2r6a" path="res://content/textures/crosshair.png" id="1_blv8c"]
 [ext_resource type="Script" path="res://scripts/playerGUI.gd" id="1_r6s6h"]
 [ext_resource type="Script" path="res://scripts/pause_node.gd" id="3_81wm1"]
+[ext_resource type="FontFile" uid="uid://ypvhsdfqqtud" path="res://content/fonts/Futura Heavy font.ttf" id="4_22jlj"]
+[ext_resource type="FontFile" uid="uid://bckvrbvum5pfj" path="res://content/fonts/futura medium bt.ttf" id="5_namxk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlrfn"]
 bg_color = Color(0.2484, 0.2484, 0.2484, 1)
@@ -82,6 +84,7 @@ offset_top = 6.0
 offset_right = 31.0
 offset_bottom = 29.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_22jlj")
 text = "Settings"
 
 [node name="HSeparator" type="HSeparator" parent="PauseNode/Settings"]
@@ -118,6 +121,7 @@ offset_left = -109.0
 offset_top = 2.0
 offset_right = -26.0
 offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("5_namxk")
 text = "Resolution"
 
 [node name="CheckBox" type="CheckBox" parent="PauseNode/Settings"]
@@ -133,6 +137,7 @@ offset_left = -186.0
 offset_top = -1.0
 offset_right = -103.0
 offset_bottom = 22.0
+theme_override_fonts/font = ExtResource("5_namxk")
 text = "Fullscreen"
 
 [node name="CheckBox2" type="CheckBox" parent="PauseNode/Settings"]
@@ -148,6 +153,7 @@ offset_left = -186.0
 offset_top = -1.0
 offset_right = -103.0
 offset_bottom = 22.0
+theme_override_fonts/font = ExtResource("5_namxk")
 text = "VSync"
 
 [node name="Button" type="Button" parent="PauseNode/Settings"]
@@ -156,6 +162,7 @@ offset_left = 5.0
 offset_top = 213.0
 offset_right = 217.0
 offset_bottom = 246.0
+theme_override_fonts/font = ExtResource("4_22jlj")
 text = "Apply"
 
 [node name="Button2" type="Button" parent="PauseNode/Settings"]
@@ -182,6 +189,7 @@ offset_top = 187.0
 offset_right = 305.0
 offset_bottom = 245.0
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_22jlj")
 theme_override_font_sizes/font_size = 42
 text = "GAME PAUSED"
 
@@ -198,18 +206,22 @@ grow_vertical = 2
 
 [node name="Button" type="Button" parent="PauseNode/Main/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_namxk")
 text = "Continue"
 
 [node name="Button2" type="Button" parent="PauseNode/Main/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_namxk")
 text = "Settings"
 
 [node name="Button3" type="Button" parent="PauseNode/Main/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_namxk")
 text = "Exit to menu"
 
 [node name="Button4" type="Button" parent="PauseNode/Main/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_namxk")
 text = "Exit to desktop"
 
 [node name="DebugInfoLabel" type="Label" parent="."]

@@ -10,7 +10,7 @@ extends Control
 
 ## This template does not supply loading screens, so you have to make one yourself
 func _play() -> void:
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 ## literally copied from game pause settings smh
 func _settings() -> void:

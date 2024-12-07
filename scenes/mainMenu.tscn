@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ee6lb27nmpu1"]
+[gd_scene load_steps=5 format=3 uid="uid://ee6lb27nmpu1"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_2s5sd"]
+[ext_resource type="FontFile" uid="uid://ypvhsdfqqtud" path="res://content/fonts/Futura Heavy font.ttf" id="2_5wv25"]
+[ext_resource type="FontFile" uid="uid://bckvrbvum5pfj" path="res://content/fonts/futura medium bt.ttf" id="3_se1ac"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrvy0"]
 bg_color = Color(0.2484, 0.2484, 0.2484, 1)
@@ -38,24 +40,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -111.0
-offset_top = -157.0
-offset_right = 112.0
-offset_bottom = -123.0
+offset_left = -153.0
+offset_top = -176.0
+offset_right = 158.0
+offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "my awesome game"
-
-[node name="Label2" type="Label" parent="Label"]
-layout_mode = 0
-offset_left = 134.0
-offset_top = 24.0
-offset_right = 224.0
-offset_bottom = 58.0
-theme_override_colors/font_color = Color(0.934358, 0.934358, 7.70092e-07, 1)
-theme_override_font_sizes/font_size = 24
-text = "DELUXE"
+theme_override_fonts/font = ExtResource("2_5wv25")
+theme_override_font_sizes/font_size = 39
+text = "Hungry Wizard"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -66,14 +61,17 @@ offset_bottom = 482.0
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_se1ac")
 text = "Play"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_se1ac")
 text = "Settings"
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_se1ac")
 text = "Exit to desktop"
 
 [node name="Settings" type="Panel" parent="."]
@@ -102,6 +100,7 @@ offset_top = 6.0
 offset_right = 31.0
 offset_bottom = 29.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_se1ac")
 text = "Settings"
 
 [node name="HSeparator" type="HSeparator" parent="Settings"]
@@ -138,6 +137,7 @@ offset_left = -109.0
 offset_top = 2.0
 offset_right = -26.0
 offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("3_se1ac")
 text = "Resolution"
 
 [node name="CheckBox" type="CheckBox" parent="Settings"]
@@ -153,6 +153,7 @@ offset_left = -186.0
 offset_top = -1.0
 offset_right = -103.0
 offset_bottom = 22.0
+theme_override_fonts/font = ExtResource("3_se1ac")
 text = "Fullscreen"
 
 [node name="CheckBox2" type="CheckBox" parent="Settings"]
@@ -168,6 +169,7 @@ offset_left = -186.0
 offset_top = -1.0
 offset_right = -103.0
 offset_bottom = 22.0
+theme_override_fonts/font = ExtResource("3_se1ac")
 text = "VSync"
 
 [node name="Button" type="Button" parent="Settings"]
