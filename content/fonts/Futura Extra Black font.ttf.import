@@ -1,0 +1,34 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://bunvswxows1mo"
+path="res://.godot/imported/Futura Extra Black font.ttf-27b8012fa8916c7d34561b9a5c018114.fontdata"
+
+[deps]
+
+source_file="res://content/fonts/Futura Extra Black font.ttf"
+dest_files=["res://.godot/imported/Futura Extra Black font.ttf-27b8012fa8916c7d34561b9a5c018114.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}
