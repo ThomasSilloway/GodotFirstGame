@@ -1,8 +1,115 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8fhirehbej51"]
+[gd_scene load_steps=10 format=3 uid="uid://b8fhirehbej51"]
 
+[ext_resource type="Script" path="res://scripts/wand.gd" id="1_0s482"]
 [ext_resource type="PackedScene" uid="uid://chvqsk2ehgrg0" path="res://scenes/wandinner.tscn" id="1_egy3x"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_07iel"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="4_dw401"]
+[ext_resource type="Script" path="res://scripts/wand_casting.gd" id="4_wlpag"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_ad8ly"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_m2lds"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="6_wayju"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_3tmgv"]
 
 [node name="Wand" type="Node3D"]
+script = ExtResource("1_0s482")
 
-[node name="AuxScene2" parent="." instance=ExtResource("1_egy3x")]
+[node name="StateChartDebugger" parent="." instance=ExtResource("2_07iel")]
+offset_left = 773.0
+offset_top = -1.0
+initial_node_to_watch = NodePath("../WandCasting/CastingStateChart")
+
+[node name="Mesh" parent="." instance=ExtResource("1_egy3x")]
 transform = Transform3D(0.015, 0, 0, 0, 0.0133172, -0.006903, 0, 0.006903, 0.0133172, 0, 0.0141585, -0.0310023)
+
+[node name="WandCasting" type="Node" parent="."]
+script = ExtResource("4_wlpag")
+element_rotation = Quaternion(0, 0, 0, 1)
+element_position = Vector3(0, 0.085, -0.015)
+casting_type_rotation = Quaternion(-0.195, 0.602, 0.378, 0.676)
+casting_type_position = Vector3(-0.078, 0.135, 0.03)
+cast_rotation = Quaternion(-0.719089, 0, 0, 0.694918)
+cast_position = Vector3(-0.095, 0.13, 0.039)
+
+[node name="CastingStateChart" type="Node" parent="WandCasting"]
+script = ExtResource("4_dw401")
+
+[node name="Root" type="Node" parent="WandCasting/CastingStateChart"]
+script = ExtResource("6_wayju")
+
+[node name="InputSelection" type="Node" parent="WandCasting/CastingStateChart/Root"]
+script = ExtResource("5_ad8ly")
+initial_state = NodePath("ChooseElement")
+
+[node name="ChooseElement" type="Node" parent="WandCasting/CastingStateChart/Root/InputSelection"]
+script = ExtResource("6_m2lds")
+
+[node name="ToChooseCastingType" type="Node" parent="WandCasting/CastingStateChart/Root/InputSelection/ChooseElement"]
+script = ExtResource("7_3tmgv")
+to = NodePath("../../ChooseCastingType")
+event = &"transition_to_choose_casting_type"
+delay_in_seconds = "0.0"
+
+[node name="ChooseCastingType" type="Node" parent="WandCasting/CastingStateChart/Root/InputSelection"]
+script = ExtResource("6_m2lds")
+
+[node name="ToReadyToCast" type="Node" parent="WandCasting/CastingStateChart/Root/InputSelection/ChooseCastingType"]
+script = ExtResource("7_3tmgv")
+to = NodePath("../../ReadyToCast")
+event = &"transition_to_ready_to_cast"
+delay_in_seconds = "0.0"
+
+[node name="ReadyToCast" type="Node" parent="WandCasting/CastingStateChart/Root/InputSelection"]
+script = ExtResource("6_m2lds")
+
+[node name="ToChooseElement" type="Node" parent="WandCasting/CastingStateChart/Root/InputSelection/ReadyToCast"]
+script = ExtResource("7_3tmgv")
+to = NodePath("../../ChooseElement")
+event = &"transition_to_choose_element"
+delay_in_seconds = "0.0"
+
+[node name="Animations" type="Node" parent="WandCasting/CastingStateChart/Root"]
+script = ExtResource("5_ad8ly")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="WandCasting/CastingStateChart/Root/Animations"]
+script = ExtResource("6_m2lds")
+
+[node name="ToElement" type="Node" parent="WandCasting/CastingStateChart/Root/Animations/Idle"]
+script = ExtResource("7_3tmgv")
+to = NodePath("../../Element")
+event = &"transition_to_element"
+delay_in_seconds = "0.0"
+
+[node name="Element" type="Node" parent="WandCasting/CastingStateChart/Root/Animations"]
+script = ExtResource("6_m2lds")
+
+[node name="ToCastingType" type="Node" parent="WandCasting/CastingStateChart/Root/Animations/Element"]
+script = ExtResource("7_3tmgv")
+to = NodePath("../../CastingType")
+event = &"transition_to_casting_type"
+delay_in_seconds = "0.0"
+
+[node name="CastingType" type="Node" parent="WandCasting/CastingStateChart/Root/Animations"]
+script = ExtResource("6_m2lds")
+
+[node name="ToCast" type="Node" parent="WandCasting/CastingStateChart/Root/Animations/CastingType"]
+script = ExtResource("7_3tmgv")
+to = NodePath("../../Cast")
+event = &"transition_to_cast"
+delay_in_seconds = "0.25"
+
+[node name="Cast" type="Node" parent="WandCasting/CastingStateChart/Root/Animations"]
+script = ExtResource("6_m2lds")
+
+[node name="ToIdle" type="Node" parent="WandCasting/CastingStateChart/Root/Animations/Cast"]
+script = ExtResource("7_3tmgv")
+to = NodePath("../../Idle")
+event = &"transition_to_idle"
+delay_in_seconds = "0.5"
+
+[connection signal="state_input" from="WandCasting/CastingStateChart/Root/InputSelection/ChooseElement" to="WandCasting" method="_on_choose_element_state_input"]
+[connection signal="state_input" from="WandCasting/CastingStateChart/Root/InputSelection/ChooseCastingType" to="WandCasting" method="_on_choose_casting_type_state_input"]
+[connection signal="state_entered" from="WandCasting/CastingStateChart/Root/Animations/Idle" to="WandCasting" method="_on_idle_state_entered"]
+[connection signal="state_entered" from="WandCasting/CastingStateChart/Root/Animations/Element" to="WandCasting" method="_on_element_state_entered"]
+[connection signal="state_entered" from="WandCasting/CastingStateChart/Root/Animations/CastingType" to="WandCasting" method="_on_casting_type_state_entered"]
+[connection signal="state_entered" from="WandCasting/CastingStateChart/Root/Animations/Cast" to="WandCasting" method="_on_cast_state_entered"]
