@@ -25,10 +25,16 @@ transform = Transform3D(0.015, 0, 0, 0, 0.0133172, -0.006903, 0, 0.006903, 0.013
 script = ExtResource("4_wlpag")
 element_rotation = Quaternion(0, 0, 0, 1)
 element_position = Vector3(0, 0.085, -0.015)
-casting_type_rotation = Quaternion(-0.195, 0.602, 0.378, 0.676)
-casting_type_position = Vector3(-0.078, 0.135, 0.03)
+element_transition_type = 10
+casting_type_rotation = Quaternion(-0.174764, 0.605182, 0.380486, 0.677085)
+casting_type_position = Vector3(-0.078, 0.135, 0.015)
+casting_type_transition_type = 10
+casting_type_ease = 1
 cast_rotation = Quaternion(-0.719089, 0, 0, 0.694918)
 cast_position = Vector3(-0.095, 0.13, 0.039)
+cast_transition_type = 2
+cast_tween_time = 0.125
+idle_tween_time = 0.175
 
 [node name="CastingStateChart" type="Node" parent="WandCasting"]
 script = ExtResource("4_dw401")
@@ -96,7 +102,7 @@ script = ExtResource("6_m2lds")
 script = ExtResource("7_3tmgv")
 to = NodePath("../../Cast")
 event = &"transition_to_cast"
-delay_in_seconds = "0.25"
+delay_in_seconds = "0.01"
 
 [node name="Cast" type="Node" parent="WandCasting/CastingStateChart/Root/Animations"]
 script = ExtResource("6_m2lds")
@@ -105,7 +111,7 @@ script = ExtResource("6_m2lds")
 script = ExtResource("7_3tmgv")
 to = NodePath("../../Idle")
 event = &"transition_to_idle"
-delay_in_seconds = "0.5"
+delay_in_seconds = "0.6"
 
 [connection signal="state_input" from="WandCasting/CastingStateChart/Root/InputSelection/ChooseElement" to="WandCasting" method="_on_choose_element_state_input"]
 [connection signal="state_input" from="WandCasting/CastingStateChart/Root/InputSelection/ChooseCastingType" to="WandCasting" method="_on_choose_casting_type_state_input"]
