@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8fhirehbej51"]
+
+[ext_resource type="PackedScene" uid="uid://chvqsk2ehgrg0" path="res://scenes/wandinner.tscn" id="1_egy3x"]
+
+[node name="Wand" type="Node3D"]
+
+[node name="AuxScene2" parent="." instance=ExtResource("1_egy3x")]
+transform = Transform3D(0.015, 0, 0, 0, 0.0133172, -0.006903, 0, 0.006903, 0.0133172, 0, 0.0141585, -0.0310023)

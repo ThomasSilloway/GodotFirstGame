@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://brpt71jl5cg2q"]
+[gd_scene load_steps=10 format=3 uid="uid://brpt71jl5cg2q"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_yofdb"]
 [ext_resource type="PackedScene" uid="uid://c6wmqp0buuk5m" path="res://scenes/PlayerGUI.tscn" id="2_ywley"]
+[ext_resource type="PackedScene" uid="uid://b8fhirehbej51" path="res://scenes/wand.tscn" id="3_8x672"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jse87"]
 
@@ -94,6 +95,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468065, 0)
 
 [node name="Camera3D" type="Camera3D" parent="head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0026046, 0)
+
+[node name="Wand" parent="head/Camera3D" instance=ExtResource("3_8x672")]
+transform = Transform3D(1, 0, 0, 0, 0.928486, 0.371368, 0, -0.371368, 0.928486, 0.118, -0.202, -0.117)
 
 [node name="RayCast3D" type="RayCast3D" parent="head"]
 target_position = Vector3(0, 0, -0.91)

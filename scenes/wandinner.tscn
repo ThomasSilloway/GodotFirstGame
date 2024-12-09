@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://chvqsk2ehgrg0"]
+
+[ext_resource type="PackedScene" uid="uid://d1txvdf7mdmv6" path="res://content/meshes/wand/wand.glb" id="1_1gkng"]
+[ext_resource type="Texture2D" uid="uid://cfs6q8cxrdfg6" path="res://content/meshes/wand/wand_1.jpg" id="2_qhtxm"]
+[ext_resource type="Texture2D" uid="uid://cf22laomegpld" path="res://content/meshes/wand/wand_2.jpg" id="3_0wp3v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2xjt2"]
+albedo_texture = ExtResource("2_qhtxm")
+metallic_specular = 0.0
+normal_enabled = true
+normal_texture = ExtResource("3_0wp3v")
+
+[node name="AuxScene" instance=ExtResource("1_1gkng")]
+
+[node name="tripo_node_69a31212-59ec-4c6a-9465-d56803839fce" parent="Node" index="0"]
+material_override = SubResource("StandardMaterial3D_2xjt2")
